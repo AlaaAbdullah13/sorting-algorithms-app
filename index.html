@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Visualizer - eng lolo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Sorting Visualizer</h1>
+        <div class="controls">
+            <button id="newArray">New Array</button>
+            <select id="algorithm">
+                <option value="bubble">Bubble Sort</option>
+                <option value="selection">Selection Sort</option>
+                <option value="insertion">Insertion Sort</option>
+                <option value="merge">Merge Sort</option>
+            </select>
+            <div class="slider-container">
+                <label for="speed">Speed</label>
+                <input type="range" id="speed" min="1" max="100" value="50">
+            </div>
+            <button id="startSort" class="primary-btn">Start Sorting</button>
+            <button id="themeToggle" class="theme-toggle" title="Toggle Dark/Light Mode">🌓</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="visualizer-container">
+            <!-- Bars will be generated here by JavaScript -->
+        </div>
+        <div id="algo-info" class="info-card">
+            <h3>Select an algorithm to see its details!</h3>
+            <p id="algo-description"></p>
+            <div class="complexity">
+                <strong>Time Complexity:</strong> <span id="algo-complexity"></span>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Made with ✨ for eng lolo</p>
+    </footer>
+
+    <!-- Modular JavaScript Files -->
+    <script src="js/visualizer.js"></script>
+    <script src="js/sorting-algorithms.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
