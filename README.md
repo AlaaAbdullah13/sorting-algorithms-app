@@ -73,13 +73,13 @@ This project uses a **purple cartoon aesthetic** inspired by playful, bubbly des
 VIBECODING/
 ├── index.html                  # Main page with controls & visualizer
 ├── css/
-├── style.css               # Purple cartoon theme & animations
+│   └── style.css               # Purple cartoon theme & animations
 ├── js/
-├── app.js                  # Main controller, state management
-├── sorting-algorithms.js   # All 5 sorting algorithms
-└── visualizer.js           # Bar rendering & UI updates
+│   ├── app.js                  # Main controller, state management
+│   ├── sorting-algorithms.js   # All 5 sorting algorithms
+│   └── visualizer.js           # Bar rendering & UI updates
 ├── .github/
-└── copilot-instructions.md # AI coding guidelines
+│   └── copilot-instructions.md # AI coding guidelines
 ├── AGENT.md                    # AI agent instructions
 ├── README.md                   # This file!
 └── .gitignore                  # Git ignore rules
@@ -91,11 +91,11 @@ VIBECODING/
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/AlaaAbdullah13/sorting-algorithms-app.git
+   git clone https://github.com/AlaaAbdullah13/VIBECODING.git
    ```
 2. **Open `index.html`** in any modern browser — that's it!
    ```bash
-   cd sorting-algorithms-app
+   cd VIBECODING
    open index.html    # macOS
    xdg-open index.html # Linux
    ```

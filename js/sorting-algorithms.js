@@ -28,7 +28,7 @@ async function bubbleSort(array, getSpeed) {
             updateBars([j, j + 1], 'comparing');
             incrementComparisons();
 
-            await sleep(101 - getSpeed());
+            await sleep((101 - getSpeed()) * 10);
 
             if (array[j] > array[j + 1]) {
                 // Swap the values in the array
@@ -43,7 +43,7 @@ async function bubbleSort(array, getSpeed) {
                 // Show swap color
                 updateBars([j, j + 1], 'swapping');
                 incrementSwaps();
-                await sleep(101 - getSpeed());
+                await sleep((101 - getSpeed()) * 10);
             }
 
             // Reset color back to normal
@@ -75,7 +75,7 @@ async function selectionSort(array, getSpeed) {
 
             updateBars([j], 'comparing');
             incrementComparisons();
-            await sleep(101 - getSpeed());
+            await sleep((101 - getSpeed()) * 10);
 
             if (array[j] < array[minIdx]) {
                 if (minIdx !== i) resetBarColor(minIdx);
@@ -97,7 +97,7 @@ async function selectionSort(array, getSpeed) {
 
         resetBarColor(minIdx);
         updateBars([i], 'sorted');
-        await sleep(101 - getSpeed());
+        await sleep((101 - getSpeed()) * 10);
     }
 }
 
@@ -117,7 +117,7 @@ async function insertionSort(array, getSpeed) {
         let j = i - 1;
 
         updateBars([i], 'comparing');
-        await sleep(101 - getSpeed());
+        await sleep((101 - getSpeed()) * 10);
 
         while (j >= 0 && array[j] > key) {
             if (stopRequested) return;
@@ -131,14 +131,14 @@ async function insertionSort(array, getSpeed) {
             updateBars([j + 1], 'swapping');
             incrementSwaps();
 
-            await sleep(101 - getSpeed());
+            await sleep((101 - getSpeed()) * 10);
             resetBarColor(j + 1);
             j = j - 1;
         }
         array[j + 1] = key;
         bars[j + 1].style.height = `${array[j + 1] * 4}px`;
         updateBars([j + 1], 'sorted');
-        await sleep(101 - getSpeed());
+        await sleep((101 - getSpeed()) * 10);
     }
 
     // Final pass to mark everything sorted
@@ -193,7 +193,7 @@ async function merge(array, start, mid, end, getSpeed) {
         // Highlight bars being compared
         updateBars([k], 'comparing');
         incrementComparisons();
-        await sleep(101 - getSpeed());
+        await sleep((101 - getSpeed()) * 10);
 
         if (left[i] <= right[j]) {
             array[k] = left[i];
@@ -207,7 +207,7 @@ async function merge(array, start, mid, end, getSpeed) {
         bars[k].style.height = `${array[k] * 4}px`;
         updateBars([k], 'swapping');
         incrementSwaps();
-        await sleep(101 - getSpeed());
+        await sleep((101 - getSpeed()) * 10);
 
         resetBarColor(k);
         k++;
@@ -220,7 +220,7 @@ async function merge(array, start, mid, end, getSpeed) {
         bars[k].style.height = `${array[k] * 4}px`;
         updateBars([k], 'swapping');
         incrementSwaps();
-        await sleep(101 - getSpeed());
+        await sleep((101 - getSpeed()) * 10);
         resetBarColor(k);
         i++;
         k++;
@@ -284,7 +284,7 @@ async function partition(array, low, high, getSpeed) {
 
         updateBars([j], 'comparing');
         incrementComparisons();
-        await sleep(101 - getSpeed());
+        await sleep((101 - getSpeed()) * 10);
 
         if (array[j] < pivot) {
             i++;
@@ -299,7 +299,7 @@ async function partition(array, low, high, getSpeed) {
 
             updateBars([i, j], 'swapping');
             incrementSwaps();
-            await sleep(101 - getSpeed());
+            await sleep((101 - getSpeed()) * 10);
         }
 
         resetBarColor(j);
