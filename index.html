@@ -4,45 +4,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorting Visualizer - eng lolo</title>
+    <meta name="description"
+        content="A fun, interactive sorting algorithm visualizer with a purple cartoon design. Watch Bubble, Selection, Insertion, Merge, and Quick Sort come to life!">
+    <title>Sorting Algorithms App — eng lolo ✨</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <header>
-        <h1>Sorting Visualizer</h1>
+        <h1><span class="emoji">🔮</span> Sorting Algorithms App <span class="emoji">✨</span></h1>
         <div class="controls">
-            <button id="newArray">New Array</button>
-            <select id="algorithm">
-                <option value="bubble">Bubble Sort</option>
-                <option value="selection">Selection Sort</option>
-                <option value="insertion">Insertion Sort</option>
-                <option value="merge">Merge Sort</option>
-            </select>
-            <div class="slider-container">
-                <label for="speed">Speed</label>
-                <input type="range" id="speed" min="1" max="100" value="50">
+
+            <!-- Algorithm & Array Controls -->
+            <div class="control-group">
+                <select id="algorithm">
+                    <option value="bubble">🫧 Bubble Sort</option>
+                    <option value="selection">👆 Selection Sort</option>
+                    <option value="insertion">📥 Insertion Sort</option>
+                    <option value="merge">🔀 Merge Sort</option>
+                    <option value="quick">⚡ Quick Sort</option>
+                </select>
+                <button id="newArray">🔀 New Array</button>
             </div>
-            <button id="startSort" class="primary-btn">Start Sorting</button>
+
+            <!-- Playback Controls -->
+            <div class="control-group">
+                <button id="startSort" class="primary-btn">▶️ Start</button>
+                <button id="stopSort" class="stop-btn" disabled>⏹️ Stop</button>
+                <button id="resetArray">🔄 Reset</button>
+            </div>
+
+            <!-- Speed Controls -->
+            <div class="control-group">
+                <button id="speedDown" class="speed-btn">⏪</button>
+                <div class="slider-container">
+                    <label for="speed">Speed</label>
+                    <input type="range" id="speed" min="1" max="100" value="50">
+                </div>
+                <button id="speedUp" class="speed-btn">⏩</button>
+            </div>
+
+            <!-- Array Size -->
+            <div class="control-group">
+                <div class="slider-container">
+                    <label for="arraySize">Size</label>
+                    <input type="range" id="arraySize" min="10" max="80" value="30">
+                </div>
+            </div>
+
+            <!-- Theme Toggle -->
             <button id="themeToggle" class="theme-toggle" title="Toggle Dark/Light Mode">🌓</button>
+        </div>
+
+        <!-- Live Stats -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-icon">🔍</span>
+                <span>Comparisons:</span>
+                <span id="comparisonCount" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">🔄</span>
+                <span>Swaps:</span>
+                <span id="swapCount" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">⏱️</span>
+                <span>Time:</span>
+                <span id="elapsedTime" class="stat-value">0.0s</span>
+            </div>
         </div>
     </header>
 
     <main>
-        <div id="visualizer-container">
-            <!-- Bars will be generated here by JavaScript -->
-        </div>
-        <div id="algo-info" class="info-card">
-            <h3>Select an algorithm to see its details!</h3>
-            <p id="algo-description"></p>
-            <div class="complexity">
-                <strong>Time Complexity:</strong> <span id="algo-complexity"></span>
+        <div class="main-layout">
+            <!-- Left: Visualizer -->
+            <div id="visualizer-container">
+                <!-- Bars will be generated here by JavaScript -->
+            </div>
+
+            <!-- Right: Algorithm Info Slide Panel -->
+            <div id="algo-slide-panel" class="slide-panel">
+                <!-- Slide Panel Header with tabs -->
+                <div class="slide-tabs">
+                    <button class="slide-tab active" data-tab="overview">📋 Overview</button>
+                    <button class="slide-tab" data-tab="howItWorks">⚙️ How It Works</button>
+                    <button class="slide-tab" data-tab="proscons">✅ Pros & Cons</button>
+                    <button class="slide-tab" data-tab="usecases">🎯 Use Cases</button>
+                </div>
+
+                <!-- Slide Content Area -->
+                <div class="slide-content-wrapper">
+                    <!-- Overview Tab -->
+                    <div class="slide-content active" id="tab-overview">
+                        <div class="slide-header">
+                            <h3 id="algo-title">🫧 Bubble Sort</h3>
+                            <div class="complexity-badges">
+                                <span class="badge time-badge">⏱️ Time: <strong id="algo-time">O(n²)</strong></span>
+                                <span class="badge space-badge">💾 Space: <strong id="algo-space">O(1)</strong></span>
+                                <span class="badge stable-badge" id="algo-stable">✅ Stable</span>
+                            </div>
+                        </div>
+                        <p id="algo-description" class="algo-desc"></p>
+                    </div>
+
+                    <!-- How It Works Tab -->
+                    <div class="slide-content" id="tab-howItWorks">
+                        <h3>⚙️ How It Works</h3>
+                        <ol id="algo-steps" class="step-list">
+                            <!-- Steps injected by JS -->
+                        </ol>
+                    </div>
+
+                    <!-- Pros & Cons Tab -->
+                    <div class="slide-content" id="tab-proscons">
+                        <h3>✅ Pros & ❌ Cons</h3>
+                        <div class="proscons-grid">
+                            <div class="pros-section">
+                                <h4>👍 Pros</h4>
+                                <ul id="algo-pros"></ul>
+                            </div>
+                            <div class="cons-section">
+                                <h4>👎 Cons</h4>
+                                <ul id="algo-cons"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Use Cases Tab -->
+                    <div class="slide-content" id="tab-usecases">
+                        <h3>🎯 When to Use</h3>
+                        <ul id="algo-usecases" class="usecase-list"></ul>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>Made with ✨ for eng lolo</p>
+        <p>🔮 Made with ✨ & 💜 for Eng LOLO 🔮</p>
     </footer>
 
     <!-- Modular JavaScript Files -->
