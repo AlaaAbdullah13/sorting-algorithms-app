@@ -27,3 +27,4 @@ When working on this project for **eng lolo**, follow these strict instructions:
 - Provide implementation plans before making large changes.
 - Ensure all code is modular and easy for **eng lolo** to learn from.
 - Prioritize clean, readable code over overly clever optimizations.
+Setting up GitHub Pages
